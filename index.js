@@ -53,7 +53,7 @@ function writeToFile(fileName, data) {
         if (err) {
             return console.log(err);
         }
-        console.log("Generated logo.svg!");
+        console.log("Generated logo.svg, Ayyyyoooo!!!  Please open your new logo with a live server to see results!");
     });
 };
 
@@ -74,28 +74,28 @@ async function init() {
 	}
 
     // users responses to "Please enter a color for the text. Please select a shape for your logo. Please enter a color for the shape."
-	user_text_color = answers["text-color"];
-	user_shape_color = answers["shape-color"];
-	user_shape_type = answers["shape-type"];
+	text_color = answers["text-color"];
+	shape_color = answers["shape-color"];
+	shape_type = answers["shape-type"];
 	let user_shape;
-	if (user_shape_type === "Square" || user_shape_type === "square") {
-		user_shape = new Square();
-
-	} else if (user_shape_type === "Circle" || user_shape_type === "circle") {
+	if (shape_type === "circle") {
 		user_shape = new Circle();
 
-	} else if (user_shape_type === "Triangle" || user_shape_type === "triangle") {
+	} else if (shape_type === "triangle") {
 		user_shape = new Triangle();
 
-	} else {
-		console.log("Invalid shape!");
-	}
+	} else if (shape_type === "square") {
+		user_shape = new Square();
 
+	} else {
+		console.log("Error, please choose a shape!");
+	}
+    
 	// once shape is selected and initialized this applies selected color.
-    user_shape.setColor(user_shape_color);
+    user_shape.setColor(shape_color);
 
 	var svg = new Svg();
-	svg.setTextElement(user_text, user_text_color);
+	svg.setTextElement(user_text, text_color);
 	svg.setShapeElement(user_shape);
 	svgString = svg.render();
 	
